@@ -7,10 +7,10 @@
     "parcel-bundler": "^1.12.5"
   },
   "scripts": {
-    "predeploy": "npm run build",
+    "predeploy": "rm -rf dist && npm run build",
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "dev": "parcel index.html ",
+    "build": "parcel build index.html --public-url http://adagold.github.io/"
   }
 }
