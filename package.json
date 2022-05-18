@@ -11,6 +11,6 @@
     "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel index.html ",
-    "build": "parcel build index.html --public-url http://adagold.github.io/weather-report"
+    "build": "parcel build index.html --public-url /weather-report/"
   }
 }
