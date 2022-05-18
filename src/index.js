@@ -1,4 +1,6 @@
 // Solution adapted from Simon de Sal
+import 'regenerator-runtime/runtime';
+import axios from 'axios';
 
 const state = {
   city: 'Seattle',
