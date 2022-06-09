@@ -4,6 +4,13 @@ const landscape = document.createElement('p');
 const cityText = document.createElement('h2');
 const textboxCity = document.getElementById('textbox-city');
 
+// const location = {
+//   city: 'Seattle',
+//   lat: 47.6485,
+//   lon: -122.379,
+//   temp: 54,
+// };
+
 const increaseTemp = () => {
   const increaseButton = document.createElement('button');
   const tempContainer = document.getElementById('temp-content');
@@ -11,15 +18,14 @@ const increaseTemp = () => {
   tempContainer.appendChild(increaseButton);
   increaseButton.addEventListener('click', (e) => {
     temp.textContent = parseInt(temp.textContent) + 1;
-    handleTempColorChange();
-    handleLandscapesChange();
+    handleTempandLanscapesChange();
   });
 };
 
 const currentTemp = () => {
   const tempContainer = document.getElementById('temp-content');
   temp.textContent = '50';
-  handleTempColorChange();
+  handleTempandLanscapesChange();
   tempContainer.appendChild(temp);
 };
 
@@ -30,55 +36,41 @@ const decreaseTemp = () => {
   tempContainer.appendChild(decreaseButton);
   decreaseButton.addEventListener('click', (e) => {
     temp.innerText = parseInt(temp.innerText) - 1;
-    handleTempColorChange();
-    handleLandscapesChange();
+    handleTempandLanscapesChange();
   });
 };
 
 const Gardenlandscape = () => {
   const landscapeContainer = document.getElementById('garden-content');
-  handleLandscapesChange();
+  handleTempandLanscapesChange();
   landscapeContainer.appendChild(landscape);
 };
 
 //Helper Functions\\
-const handleTempColorChange = () => {
+const handleTempandLanscapesChange = () => {
   if (parseInt(temp.textContent) >= 80) {
     temp.style.color = 'red';
-  } else if (
-    parseInt(temp.textContent) >= 70 &&
-    parseInt(temp.textContent) < 80
-  ) {
-    temp.style.color = 'orange';
-  } else if (
-    parseInt(temp.textContent) >= 60 &&
-    parseInt(temp.textContent) < 70
-  ) {
-    temp.style.color = 'yellow';
-  } else if (
-    parseInt(temp.textContent) >= 50 &&
-    parseInt(temp.textContent) < 60
-  ) {
-    temp.style.color = 'green';
-  } else if (parseInt(temp.textContent) < 50) {
-    temp.style.color = 'teal';
-  }
-};
-
-const handleLandscapesChange = () => {
-  if (parseInt(temp.textContent) >= 80) {
     landscape.textContent = `"🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂"`;
   } else if (
     parseInt(temp.textContent) >= 70 &&
     parseInt(temp.textContent) < 80
   ) {
+    temp.style.color = 'orange';
     landscape.textContent = `"🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷"`;
   } else if (
     parseInt(temp.textContent) >= 60 &&
     parseInt(temp.textContent) < 70
   ) {
+    temp.style.color = 'yellow';
     landscape.textContent = '`"🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃"`';
-  } else if (parseInt(temp.textContent) < 60) {
+  } else if (
+    parseInt(temp.textContent) >= 50 &&
+    parseInt(temp.textContent) < 60
+  ) {
+    temp.style.color = 'green';
+    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+  } else if (parseInt(temp.textContent) < 50) {
+    temp.style.color = 'teal';
     landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
   }
 };
@@ -95,6 +87,54 @@ const updateCityName = () => {
     cityText.textContent = 'For the lovely city of: ' + textboxCity.value;
   });
 };
+///Wave 4\\\
+
+const getRealTimeTemp = () => {
+  const realTimeTemp = document.createElement('button');
+  const tempContainer = document.getElementById('temp-content');
+  realTimeTemp.textContent = 'Get Realtime Temperature';
+  tempContainer.appendChild(realTimeTemp);
+  realTimeTemp.addEventListener('click', (e) => {
+    //const axios = require('axios');
+    const findLatitudeAndLongitude = () => {
+      let latitude, longitude;
+      axios
+        .get('http://127.0.0.1:5000/location', {
+          params: {
+            q: textboxCity.value,
+          },
+        })
+        .then((response) => {
+          latitude = response.data[0].lat;
+          longitude = response.data[0].lon;
+          console.log(`${latitude}, ${longitude} have been found`);
+          getRealTimeWeather(latitude, longitude);
+        })
+        .catch((error) => {
+          console.log(`Not Found ${error.response}`);
+        });
+    };
+
+    const getRealTimeWeather = (latitude, longitude) => {
+      axios
+        .get('http://127.0.0.1:5000/weather', {
+          params: {
+            lat: latitude,
+            key: longitude,
+          },
+        })
+        .then((response) => {
+          actualTemp = response.data;
+          console.log(`${actualTemp} have been found`);
+        })
+        .catch((error) => {
+          console.log(`Not Found ${error.response.data}`);
+        });
+    };
+  });
+};
+
+///Wave 6\\\
 
 const reset = () => {
   const resetButton = document.createElement('button');
@@ -102,22 +142,10 @@ const reset = () => {
   resetButton.textContent = 'Reset';
   resetContainer.appendChild(resetButton);
   resetButton.addEventListener('click', () => {
-    textboxCity.value = '';
-    cityText.textContent = 'For the lovely city of: ';
+    textboxCity.value = 'Seattle';
+    cityText.textContent = 'For the lovely city of: ' + textboxCity.value;
   });
 };
-
-///Wave 4\\\
-
-const getRealTimeTemp = () => {
-  const realTimeTemp = document.createElement('button');
-  const tempContainer = document.getElementById('temp-content');
-  realTimeTemp.value = '';
-  tempContainer.appendChild(realTimeTemp);
-  realTimeTemp.addEventListener('click');
-};
-
-// const axios = require('axios');
 
 document.addEventListener(
   'DOMContentLoaded',
@@ -127,5 +155,6 @@ document.addEventListener(
   Gardenlandscape(),
   cityContent(),
   updateCityName(),
+  getRealTimeTemp(),
   reset()
 );
