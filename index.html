@@ -18,6 +18,7 @@
     </section>
     <section id="weather-garden">
         <h1>Weather Garden</h1>
+        <div id="sky-content"></div>
         <div id="garden-content"></div>
     </section>
     <section id="city-name">
@@ -26,7 +27,15 @@
         <input type="text" id="textbox-city">
         <div id="textbox-content"></div>
     </section>
-    
+    <section id="sky">
+        <label for="sky__label"><h1>Sky:</h1></label>
+        <select name='sky__select' id="sky__select" onchange="handleSkyChange()">
+            <option value="sunny">Sunny</option>
+            <option value="cloudy">Cloudy</option>
+            <option value="rainy">Rainy</option>
+            <option value="snowy">Snowy</option>
+        </select>
+    </section>
     <footer></footer>
     <script src = "./src/index.js"></script>
     <script src="./node_modules/axios/dist/axios.min.js"></script>

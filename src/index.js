@@ -1,6 +1,7 @@
 ///Wave 2\\\
 const temp = document.createElement('p');
 const landscape = document.createElement('p');
+const skyscape = document.createElement('p');
 const cityText = document.createElement('h2');
 const textboxCity = document.getElementById('textbox-city');
 
@@ -117,6 +118,25 @@ const getRealTimeTemp = () => {
   realTimeTemp.addEventListener('click');
 };
 
+//Wave 5\\\
+const handleSkyChange = () => {
+  if (document.getElementById('sky__select').value === 'sunny') {
+    skyscape.textContent = `☀️ ☀️ ☀️ ☀️☀️  ☀️ ☀️ ☀️☀️`;
+  } else if (document.getElementById('sky__select').value === 'rainy') {
+    skyscape.textContent = `🌧️💧🌧️  🌧️💧🌧️ 💧🌧️ 💧🌧️`;
+  } else if (document.getElementById('sky__select').value === 'cloudy') {
+    skyscape.textContent = `☁️☁️ ⛅ ☁️ ⛅ ☁️☁️☁️ ⛅`;
+  } else if (document.getElementById('sky__select').value === 'snowy') {
+    skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️`;
+  }
+};
+
+const displaySky = () => {
+  const skyContainer = document.getElementById('sky-content');
+  handleSkyChange();
+  skyContainer.appendChild(skyscape);
+};
+
 // const axios = require('axios');
 
 document.addEventListener(
@@ -125,6 +145,7 @@ document.addEventListener(
   currentTemp(),
   decreaseTemp(),
   Gardenlandscape(),
+  displaySky(),
   cityContent(),
   updateCityName(),
   reset()
