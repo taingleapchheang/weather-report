@@ -19,16 +19,13 @@ const tempConversion = {
   C: [27, 21, 15, 10],
 };
 
-const increaseTemp = () => {
+const upAndDownButtons = () => {
   const increaseButton = document.getElementById('increase-temp-control');
+  const decreaseButton = document.getElementById('decrease-temp-control');
   increaseButton.addEventListener('click', (e) => {
     tempValue.textContent = parseInt(tempValue.textContent) + 1;
     handleTempandLandscapesChange();
   });
-};
-
-const decreaseTemp = () => {
-  const decreaseButton = document.getElementById('decrease-temp-control');
   decreaseButton.addEventListener('click', (e) => {
     tempValue.textContent = parseInt(tempValue.textContent) - 1;
     handleTempandLandscapesChange();
@@ -194,9 +191,8 @@ const getRealTimeWeather = () => {
 
 document.addEventListener(
   'DOMContentLoaded',
-  increaseTemp(),
+  upAndDownButtons(),
   currentTempValue(),
-  decreaseTemp(),
   updateCityName(),
   getRealTimeTemp(),
   displaySky(),
