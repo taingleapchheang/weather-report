@@ -1,13 +1,9 @@
 ///Wave 2\\\
 const tempValue = document.getElementById('temp-value');
 const landscape = document.getElementById('landscape-content');
-const skyscape = document.getElementById('sky-content');
 const cityName = document.getElementById('city-name-top');
 const textboxCity = document.getElementById('textbox-city');
-<<<<<<< HEAD
 const skyscape = document.getElementById('sky-content');
-=======
->>>>>>> main
 const API = 'http://127.0.0.1:5000';
 
 const defaultLocation = {
@@ -65,22 +61,12 @@ const getRealTimeTemp = () => {
 
 ///Wave 5\\\
 const displaySky = () => {
-<<<<<<< HEAD
   const skyValue = document.getElementById('sky-select');
   handleSkyChange();
   skyValue.addEventListener('change', () => {
     document.getElementById('sky-select');
     handleSkyChange();
   });
-=======
-  const skyValue = document.getElementById('sky-select').value;
-  const skySelect = document.getElementById('sky-select');
-  handleSkyChange();
-  skySelect.addEventListener('change', () => {
-    skyValue = handleSkyChange();
-  });
-  skyscape.appendChild(skyValue);
->>>>>>> main
 };
 
 ///Wave 6\\\
@@ -147,11 +133,7 @@ const handleTempandLandscapesChange = () => {
   ) {
     tempValue.style.color = 'green';
     landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
-<<<<<<< HEAD
   } else if (parseInt(tempValue.textContent) < currentDegree[3]) {
-=======
-  } else if (parseInt(tempValue.textContent) < 50) {
->>>>>>> main
     tempValue.style.color = 'blue';
     landscape.textContent = `❄️️🌲⛄️🌲⛄️❄️️🌲❄️️🌲🌲⛄️❄️️🌲`;
   }
@@ -165,11 +147,7 @@ const handleSkyChange = () => {
   } else if (document.getElementById('sky-select').value === 'cloudy') {
     skyscape.textContent = `☁️☁️ ⛅ ☁️ ⛅ ☁️☁️☁️ ⛅`;
   } else if (document.getElementById('sky-select').value === 'snowy') {
-<<<<<<< HEAD
     skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️`;
-=======
-    skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ️❄️ 🌧️❄️️ ❄️️`;
->>>>>>> main
   }
 };
 
