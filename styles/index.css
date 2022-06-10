@@ -19,10 +19,13 @@ body {
 }
 
 #glass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100vh;
     height: 85vh;
     position: absolute;
-    overflow: hidden;
+    overflow: scroll;
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135,  0.37 );
     backdrop-filter: blur( 15px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -43,7 +46,6 @@ body {
 
 #landscape-content {
     margin-top: 25px;
-    margin-bottom: 25px;
 }
 
 /* #temp-section {
@@ -69,14 +71,13 @@ h1 {
 h2, h3 {
     font-weight: lighter;
     color: mediumslateblue;
-
 }
 
 #temp-value {
     font-size: xx-large;
 }
 
-/* || Input Text Box */
+/* || City Name Input Text Box */
 
 /* Code Source: https://codepen.io/aaroniker/pen/dybMVMB */
 .form-group {
@@ -90,7 +91,6 @@ h2, h3 {
 .form-field {
     display: block;
     width: 50%;
-    padding: 8px 16px;
     line-height: 25px;
     font-size: 14px;
     font-weight: 500;
@@ -111,61 +111,24 @@ h2, h3 {
 }
 
 /* || Sky Select Box */
-.selectdiv {
-    position: relative;
-    /*Don't really need this just for demo styling*/
 
-    float: left;
-    min-width: 200px;
-    margin: 50px 33%;
-}
-
-/* IE11 hide native button (thanks Matt!) */
-select::-ms-expand {
-    display: none;
-}
-
+/* Code Source: https://codepen.io/fabriceleven/pen/qOmNPG */
 .selectdiv:after {
-    content: '<>';
-    font: 17px "Consolas", monospace;
-    color: #333;
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    right: 11px;
-    /*Adjust for position however you want*/
-
-    top: 18px;
-    padding: 0 0 2px;
+    font-size: 14px;
+    color: #99a3ba;
     border-bottom: 1px solid #999;
-    /*left line */
-
-    position: absolute;
-    pointer-events: none;
 }
 
 .selectdiv select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    /* Add some styling */
-
-    display: block;
     width: 100%;
-    max-width: 320px;
-    height: 50px;
-    float: right;
-    margin: 5px 0px;
-    padding: 0px 24px;
-    font-size: 16px;
+    max-width: 50%;
+    height: 25px;
+    font-size: 14px;
     line-height: 1.75;
-    color: #333;
+    color: #99a3ba;
     background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    -ms-word-break: normal;
-    word-break: normal;
+    border-radius: 6px;
+    border: 1px solid #cdd9ed;
 }
 
 /* || Buttons */
