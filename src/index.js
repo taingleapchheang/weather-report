@@ -143,15 +143,15 @@ const handleSkyChange = () => {
   if (skySelectValue === 'sunny') {
     skyscape.textContent = `☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️`;
     document.body.style.backgroundImage =
-      "url('https://source.unsplash.com/9AqIdzEc9pY')";
+      "url('https://source.unsplash.com/4P21IxWN7BA')";
   } else if (skySelectValue === 'cloudy') {
     skyscape.textContent = `☁️☁️⛅☁️⛅☁️☁️⛅☁️⛅☁️☁️`;
     document.body.style.backgroundImage =
-      "url('https://source.unsplash.com/bUaIj_B0uQM')";
+      "url('https://source.unsplash.com/9AqIdzEc9pY')";
   } else if (skySelectValue === 'rainy') {
     skyscape.textContent = `🌧️💧🌧️🌧️💧🌧️💧🌧️💧🌧️💧🌧️`;
     document.body.style.backgroundImage =
-      "url('https://source.unsplash.com/qnNV1XorvWE')";
+      "url('https://source.unsplash.com/GfXyyrvGqzs')";
   } else if (skySelectValue === 'snowy') {
     skyscape.textContent = `❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️`;
     document.body.style.backgroundImage =

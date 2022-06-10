@@ -12,7 +12,7 @@ body {
     align-items: center;
     position: relative;
     min-height: 100vh;
-    background-image: url(https://source.unsplash.com/9AqIdzEc9pY);
+    background-image: url(https://source.unsplash.com/4P21IxWN7BA);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -26,6 +26,7 @@ body {
     height: 85vh;
     position: absolute;
     overflow: scroll;
+    background: rgba(255, 255, 255, 0.25);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135,  0.37 );
     backdrop-filter: blur( 15px );
     border: 1px solid rgba( 255, 255, 255, 0.18 );
@@ -52,17 +53,15 @@ body {
 
 body {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    color: darkslateblue;
+    color: #39739d;
 }
 
 h1 {
-    font-weight: lighter;
-    color: darkslateblue;
+    font-weight: bolder;
 }
 
 h2, h3 {
     font-weight: lighter;
-    color: mediumslateblue;
 }
 
 #temp-value {
@@ -168,8 +167,8 @@ button:active {
 
 footer {
     font-size: smaller;
-    color: white;
     position: absolute;
+    color: white;
     bottom: 0;
     width: 100%;
     height: 2rem;
