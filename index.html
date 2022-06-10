@@ -5,49 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Report</title>
-    <link rel="./styles/index.css" href="styles.css">
+    <link href="./styles/index.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-        <h1>Weather Report</h1>
-        <h2>For the lovely city of 
-            <span id="city-name-top"></span>
-        </h2>
-    </header>
-    <section class="temp-section">
-        <h2>Temperature</h2>
-        <div class="temp-content">
-            <div id="temp-controls">
-                <button id="celsius-button">°C</button>
-                <button id="fahrenheit-button">°F</button>
-                <span id="increase-temp-control">⬆️</span>
-                <span id="temp-value"></span>
-                <span id="decrease-temp-control">⬇️</span>
-            </div>
-            <button id="current-temp-button">Get Realtime Temperature</button>
+    <div id="glass">
+        <header>
+            <h1>Weather Report</h1>
+            <h2>For the lovely city of 
+                <span id="city-name-top"></span>
+            </h2>
+        </header>
+        <div id="weather">
+            <section class="temp-section">
+                <h2>Temperature</h2>
+                <div class="temp-content">
+                    <div id="temp-controls">
+                        <span id="increase-temp-control">⬆️</span>
+                        <span id="temp-value"></span>
+                        <span id="decrease-temp-control">⬇️</span>
+                        <button id="celsius-button">°C</button>
+                        <button id="fahrenheit-button">°F</button>
+                    </div>
+                    <button id="current-temp-button">Get Realtime Temperature</button>
+                </div>
+            </section>
+            <section id="weather-garden">
+                <h2>Weather Garden</h2>
+                <div id="sky-content"></div>
+                <div id="landscape-content"></div>
+            </section>
         </div>
-    </section>
-    <section id="weather-garden">
-        <h1>Weather Garden</h1>
-        <div id="sky-content"></div>
-        <div id="landscape-content"></div>
-    </section>
-    <section id="sky">
-        <label for="sky-label"><h1>Sky:</h1></label>
-        <select name="sky-select" id="sky-select">
-            <option value="sunny">Sunny</option>
-            <option value="cloudy">Cloudy</option>
-            <option value="rainy">Rainy</option>
-            <option value="snowy">Snowy</option>
-        </select>
-    </section>
-    <section id="city-name">
-        <h1>City Name</h1>
-        <label for="textbox-city"></label>
-        <input type="text" id="textbox-city">
-        <div id="textbox-content"></div>
-    </section>
-    <footer></footer>
+        <section id="sky">
+            <label for="sky-label"><h2>Sky</h2></label>
+            <select name="sky-select" id="sky-select">
+                <option value="sunny">Sunny</option>
+                <option value="cloudy">Cloudy</option>
+                <option value="rainy">Rainy</option>
+                <option value="snowy">Snowy</option>
+            </select>
+        </section>
+        <section id="city-name">
+            <h2>City Name</h2>
+            <div class="form-group">
+                <span>City Name:</span>
+                <label for="textbox-city"></label>
+                <input type="text" id="textbox-city" class="form-field" placeholder="Seattle">
+                <div id="textbox-content"></div>
+            </div>
+        </section>
+    </div>
+    <footer>&copy; 2022 Taingleap Chheang (she/her) & Elaine Smith (she/her) | Ada Developer's Academy - Cohort 17</footer>
     <script src = "./src/index.js"></script>
     <script src="./node_modules/axios/dist/axios.min.js"></script>
 </body>

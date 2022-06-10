@@ -1,0 +1,239 @@
+/* * {border: 1px solid red;} */
+
+/* || Page Layout */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    background-image: url(https://source.unsplash.com/9AqIdzEc9pY);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#glass {
+    width: 100vh;
+    height: 85vh;
+    position: absolute;
+    overflow: hidden;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135,  0.37 );
+    backdrop-filter: blur( 15px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+#weather {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* #temp-section {
+    flex: block;
+}
+
+#weather-garden {
+    flex: block;
+} */
+
+/* || Typography */
+
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    color: darkgray;
+}
+
+h1 {
+    font-weight: lighter;
+    color: darkgray;
+}
+
+h2 {
+    font-weight: lighter;
+    color: gray;
+
+}
+
+#temp-value {
+    font-size: xx-large;
+}
+
+/* || Input Text Box */
+/* Code Source: https://codepen.io/aaroniker/pen/dybMVMB */
+:root {
+    --input-color: #99a3ba;
+    --input-border: #7aa7c7;
+    --input-background: #fff;
+    --input-placeholder: #cbd1dc;
+
+    --input-border-focus: #275efe;
+
+    --group-color: var(--input-color);
+    --group-border: var(--input-border);
+    --group-background: #eef4ff;
+
+    --group-color-focus: #fff;
+    --group-border-focus: var(--input-border-focus);
+    --group-background-focus: #678efe;
+}
+
+.form-field {
+    display: block;
+    width: 70%;
+    padding: 8px 16px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    border-radius: 6px;
+    -webkit-appearance: none;
+    color: var(--input-color);
+    border: 1px solid var(--input-border);
+    background: var(--input-background);
+    transition: border 0.3s ease;
+    &::placeholder {
+        color: var(--input-placeholder);
+    }
+    &:focus {
+        outline: none;
+        border-color: var(--input-border-focus);
+    }
+}
+
+.form-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+    & > span,
+    .form-field {
+        white-space: nowrap;
+        display: block;
+        &:not(:first-child):not(:last-child) {
+            border-radius: 0;
+        }
+        &:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+        &:last-child {
+            border-radius: 0 6px 6px 0;
+        }
+        &:not(:first-child) {
+            margin-left: -1px;
+        }
+    }
+    .form-field {
+        position: relative;
+        z-index: 1;
+        flex: 1 1 auto;
+        width: 1%;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    & > span {
+        text-align: center;
+        padding: 8px 12px;
+        font-size: 14px;
+        line-height: 25px;
+        color: var(--group-color);
+        background: var(--group-background);
+        border: 1px solid var(--group-border);
+        transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+    }
+    &:focus-within {
+        & > span {
+            color: var(--group-color-focus);
+            background: var(--group-background-focus);
+            border-color: var(--group-border-focus);
+        }
+    }
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: inherit;
+    &:before,
+    &:after {
+        box-sizing: inherit;
+    }
+}
+
+// Center
+body {
+    min-height: 100vh;
+    font-family: "Mukta Malar", Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #f5f9ff;
+    .form-group {
+        max-width: 360px;
+        &:not(:last-child) {
+            margin-bottom: 32px;
+        }
+    }
+}
+
+/* || Buttons */
+
+/* Code Source: https://getcssscan.com/css-buttons-examples */
+button {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 2px;
+    outline: none;
+    padding: 8px .8em;
+    position: relative;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+    }
+
+button:hover,
+button:focus {
+    background-color: #b3d3ea;
+    color: #2c5777;
+}
+
+button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+button:active {
+    background-color: #a0c7e4;
+    box-shadow: none;
+    color: #2c5777;
+}
+
+/* || Footer */
+
+footer {
+    font-size: smaller;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+}
