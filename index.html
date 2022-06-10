@@ -27,8 +27,17 @@
     </section>
     <section id="weather-garden">
         <h1>Weather Garden</h1>
-        <div id="landscape-content"></div>
         <div id="sky-content"></div>
+        <div id="landscape-content"></div>
+    </section>
+    <section id="sky">
+        <label for="sky-label"><h1>Sky:</h1></label>
+        <select name="sky-select" id="sky-select" onchange="handleSkyChange()">
+            <option value="sunny">Sunny</option>
+            <option value="cloudy">Cloudy</option>
+            <option value="rainy">Rainy</option>
+            <option value="snowy">Snowy</option>
+        </select>
     </section>
     <section id="city-name">
         <h1>City Name</h1>

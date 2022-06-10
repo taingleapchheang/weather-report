@@ -3,6 +3,8 @@ const tempValue = document.getElementById('temp-value');
 const landscape = document.getElementById('landscape-content');
 const cityName = document.getElementById('city-name-top');
 const textboxCity = document.getElementById('textbox-city');
+const skyscape = document.createElement('p');
+const API = 'http://127.0.0.1:5000';
 
 const defaultLocation = {
   city: 'Seattle',
@@ -37,7 +39,6 @@ const cityContent = () => {
 };
 
 ///Wave 3\\\
-
 const updateCityName = () => {
   cityName.textContent = defaultLocation.city;
   textboxCity.addEventListener('keyup', () => {
@@ -50,6 +51,13 @@ const updateCityName = () => {
 const getRealTimeTemp = () => {
   const realTimeTempButton = document.getElementById('current-temp-button');
   realTimeTempButton.addEventListener('click', findLatitudeAndLongitude);
+};
+
+//Wave 5\\\
+const displaySky = () => {
+  const skyContainer = document.getElementById('sky-content');
+  handleSkyChange();
+  skyContainer.appendChild(skyscape);
 };
 
 ///Wave 6\\\
@@ -72,34 +80,46 @@ const convertKToF = (temp) => {
 const handleTempandLanscapesChange = () => {
   if (parseInt(tempValue.textContent) >= 80) {
     tempValue.style.color = 'red';
-    landscape.textContent = `"🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂"`;
+    landscape.textContent = `🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂`;
   } else if (
     parseInt(tempValue.textContent) >= 70 &&
     parseInt(tempValue.textContent) < 80
   ) {
     tempValue.style.color = 'orange';
-    landscape.textContent = `"🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷"`;
+    landscape.textContent = `🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷`;
   } else if (
     parseInt(tempValue.textContent) >= 60 &&
     parseInt(tempValue.textContent) < 70
   ) {
     tempValue.style.color = 'yellow';
-    landscape.textContent = '`"🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃"`';
+    landscape.textContent = `🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃`;
   } else if (
     parseInt(tempValue.textContent) >= 50 &&
     parseInt(tempValue.textContent) < 60
   ) {
     tempValue.style.color = 'green';
-    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+    landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
   } else if (parseInt(tempValue.textContent) < 50) {
     temp.style.color = 'teal';
-    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+    landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
+  }
+};
+
+const handleSkyChange = () => {
+  if (document.getElementById('sky__select').value === 'sunny') {
+    skyscape.textContent = `☀️ ☀️ ☀️ ☀️☀️  ☀️ ☀️ ☀️☀️`;
+  } else if (document.getElementById('sky__select').value === 'rainy') {
+    skyscape.textContent = `🌧️💧🌧️  🌧️💧🌧️ 💧🌧️ 💧🌧️`;
+  } else if (document.getElementById('sky__select').value === 'cloudy') {
+    skyscape.textContent = `☁️☁️ ⛅ ☁️ ⛅ ☁️☁️☁️ ⛅`;
+  } else if (document.getElementById('sky__select').value === 'snowy') {
+    skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️`;
   }
 };
 
 const findLatitudeAndLongitude = () => {
   axios
-    .get('http://127.0.0.1:5000/location', {
+    .get(`${API}/location`, {
       params: {
         q: defaultLocation.city,
       },
@@ -119,7 +139,7 @@ const findLatitudeAndLongitude = () => {
 
 const getRealTimeWeather = () => {
   axios
-    .get('http://127.0.0.1:5000/weather', {
+    .get(`${API}/weather`, {
       params: {
         lat: defaultLocation.lat,
         lon: defaultLocation.lon,
@@ -144,5 +164,6 @@ document.addEventListener(
   decreaseTemp(),
   updateCityName(),
   getRealTimeTemp(),
+  displaySky(),
   reset()
 );
