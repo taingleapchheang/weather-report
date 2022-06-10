@@ -140,13 +140,13 @@ const handleTempandLandscapesChange = () => {
 
 const handleSkyChange = () => {
   if (document.getElementById('sky-select').value === 'sunny') {
-    skyscape.textContent = `☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️`;
+    skyscape.textContent = `☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️`;
   } else if (document.getElementById('sky-select').value === 'cloudy') {
-    skyscape.textContent = `☁️☁️⛅☁️⛅☁️☁️⛅☁️⛅☁️⛅☁️`;
+    skyscape.textContent = `☁️☁️⛅☁️⛅☁️☁️⛅☁️⛅☁️☁️`;
   } else if (document.getElementById('sky-select').value === 'rainy') {
-    skyscape.textContent = `🌧️💧🌧️🌧️💧🌧️💧🌧️💧🌧️💧🌧️💧`;
+    skyscape.textContent = `🌧️💧🌧️🌧️💧🌧️💧🌧️💧🌧️💧🌧️`;
   } else if (document.getElementById('sky-select').value === 'snowy') {
-    skyscape.textContent = `❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️`;
+    skyscape.textContent = `❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️`;
   }
 };
 
