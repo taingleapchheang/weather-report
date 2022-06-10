@@ -17,7 +17,9 @@
     <section class="temp-section">
         <h2>Temperature</h2>
         <div class="temp-content">
-            <div class="temp-controls">
+            <div id="temp-controls">
+                <button id="celsius-button">°C</button>
+                <button id="fahrenheit-button">°F</button>
                 <span id="increase-temp-control">⬆️</span>
                 <span id="temp-value"></span>
                 <span id="decrease-temp-control">⬇️</span>
@@ -45,7 +47,6 @@
         <input type="text" id="textbox-city">
         <div id="textbox-content"></div>
     </section>
-    
     <footer></footer>
     <script src = "./src/index.js"></script>
     <script src="./node_modules/axios/dist/axios.min.js"></script>
