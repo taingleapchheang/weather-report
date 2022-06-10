@@ -1,9 +1,9 @@
 ///Wave 2\\\
 const tempValue = document.getElementById('temp-value');
 const landscape = document.getElementById('landscape-content');
+const skyscape = document.getElementById('sky-content');
 const cityName = document.getElementById('city-name-top');
 const textboxCity = document.getElementById('textbox-city');
-const skyscape = document.createElement('p');
 const API = 'http://127.0.0.1:5000';
 
 const defaultLocation = {
@@ -55,9 +55,13 @@ const getRealTimeTemp = () => {
 
 //Wave 5\\\
 const displaySky = () => {
-  const skyContainer = document.getElementById('sky-content');
+  const skyValue = document.getElementById('sky-select').value;
+  const skySelect = document.getElementById('sky-select');
   handleSkyChange();
-  skyContainer.appendChild(skyscape);
+  skySelect.addEventListener('change', () => {
+    skyValue = handleSkyChange();
+  });
+  skyscape.appendChild(skyValue);
 };
 
 ///Wave 6\\\
@@ -100,8 +104,8 @@ const handleTempandLanscapesChange = () => {
     tempValue.style.color = 'green';
     landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
   } else if (parseInt(tempValue.textContent) < 50) {
-    temp.style.color = 'teal';
-    landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
+    tempValue.style.color = 'blue';
+    landscape.textContent = `❄️️🌲⛄️🌲⛄️❄️️🌲❄️️🌲🌲⛄️❄️️🌲`;
   }
 };
 
@@ -113,7 +117,7 @@ const handleSkyChange = () => {
   } else if (document.getElementById('sky-select').value === 'cloudy') {
     skyscape.textContent = `☁️☁️ ⛅ ☁️ ⛅ ☁️☁️☁️ ⛅`;
   } else if (document.getElementById('sky-select').value === 'snowy') {
-    skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️`;
+    skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ️❄️ 🌧️❄️️ ❄️️`;
   }
 };
 
