@@ -10,13 +10,18 @@ const state = {
   city: 'Seattle',
   lat: 47.6485,
   lon: -122.379,
-  temp: 50,
+  temp: tempValue,
   degree: 'F',
 };
 
 const tempConversion = {
   F: [80, 70, 60, 50],
   C: [27, 21, 15, 10],
+};
+
+window.onload = () => {
+  tempValue.textContent = findLatitudeAndLongitude();
+  handleTempandLandscapesChange();
 };
 
 const upAndDownButtons = () => {
@@ -30,11 +35,6 @@ const upAndDownButtons = () => {
     tempValue.textContent = parseInt(tempValue.textContent) - 1;
     handleTempandLandscapesChange();
   });
-};
-
-const currentTempValue = () => {
-  tempValue.textContent = state.temp;
-  handleTempandLandscapesChange();
 };
 
 const cityContent = () => {
@@ -198,14 +198,20 @@ const getRealTimeWeather = () => {
     });
 };
 
-document.addEventListener(
-  'DOMContentLoaded',
-  upAndDownButtons(),
-  currentTempValue(),
-  updateCityName(),
-  getRealTimeTemp(),
-  displaySky(),
-  reset(),
-  celsius(),
-  fahrenheit()
-);
+if (document.readyState !== 'loading') {
+  upAndDownButtons();
+  updateCityName();
+  getRealTimeTemp();
+  displaySky();
+  reset();
+  celsius();
+  fahrenheit();
+} else {
+  document.addEventListener('DOMContentLoaded', upAndDownButtons);
+  document.addEventListener('DOMContentLoaded', updateCityName);
+  document.addEventListener('DOMContentLoaded', getRealTimeTemp);
+  document.addEventListener('DOMContentLoaded', displaySky);
+  document.addEventListener('DOMContentLoaded', reset);
+  document.addEventListener('DOMContentLoaded', celsius);
+  document.addEventListener('DOMContentLoaded', fahrenheit);
+}
