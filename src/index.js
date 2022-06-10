@@ -3,7 +3,7 @@ const tempValue = document.getElementById('temp-value');
 const landscape = document.getElementById('landscape-content');
 const cityName = document.getElementById('city-name-top');
 const textboxCity = document.getElementById('textbox-city');
-const skyscape = document.createElement('p');
+const skyscape = document.getElementById('sky-content');
 const API = 'http://127.0.0.1:5000';
 
 const defaultLocation = {
@@ -61,9 +61,12 @@ const getRealTimeTemp = () => {
 
 ///Wave 5\\\
 const displaySky = () => {
-  const skyContainer = document.getElementById('sky-content');
+  const skyValue = document.getElementById('sky-select');
   handleSkyChange();
-  skyContainer.appendChild(skyscape);
+  skyValue.addEventListener('change', () => {
+    document.getElementById('sky-select');
+    handleSkyChange();
+  });
 };
 
 ///Wave 6\\\
@@ -108,37 +111,31 @@ const convertFToC = () => {
 };
 
 const handleTempandLandscapesChange = () => {
-  if (
-    parseInt(tempValue.textContent) >= tempConversion[defaultLocation.degree][0]
-  ) {
+  const currentDegree = tempConversion[defaultLocation.degree];
+  if (parseInt(tempValue.textContent) >= currentDegree[0]) {
     tempValue.style.color = 'red';
     landscape.textContent = `🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂`;
   } else if (
-    parseInt(tempValue.textContent) >=
-      tempConversion[defaultLocation.degree][1] &&
-    parseInt(tempValue.textContent) < tempConversion[defaultLocation.degree][0]
+    parseInt(tempValue.textContent) >= currentDegree[1] &&
+    parseInt(tempValue.textContent) < currentDegree[0]
   ) {
     tempValue.style.color = 'orange';
     landscape.textContent = `🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷`;
   } else if (
-    parseInt(tempValue.textContent) >=
-      tempConversion[defaultLocation.degree][2] &&
-    parseInt(tempValue.textContent) < tempConversion[defaultLocation.degree][1]
+    parseInt(tempValue.textContent) >= currentDegree[2] &&
+    parseInt(tempValue.textContent) < currentDegree[1]
   ) {
     tempValue.style.color = 'yellow';
     landscape.textContent = `🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃`;
   } else if (
-    parseInt(tempValue.textContent) >=
-      tempConversion[defaultLocation.degree][3] &&
-    parseInt(tempValue.textContent) < tempConversion[defaultLocation.degree][2]
+    parseInt(tempValue.textContent) >= currentDegree[3] &&
+    parseInt(tempValue.textContent) < currentDegree[2]
   ) {
     tempValue.style.color = 'green';
     landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
-  } else if (
-    parseInt(tempValue.textContent) < tempConversion[defaultLocation.degree][3]
-  ) {
-    temp.style.color = 'teal';
-    landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
+  } else if (parseInt(tempValue.textContent) < currentDegree[3]) {
+    tempValue.style.color = 'blue';
+    landscape.textContent = `❄️️🌲⛄️🌲⛄️❄️️🌲❄️️🌲🌲⛄️❄️️🌲`;
   }
 };
 
