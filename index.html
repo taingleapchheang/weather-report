@@ -15,24 +15,26 @@
                 <span id="city-name-top"></span>
             </h2>
         </header>
-        <section class="temp-section">
-            <h2>Temperature</h2>
-            <div class="temp-content">
-                <div id="temp-controls">
-                    <span id="increase-temp-control">⬆️</span>
-                    <span id="temp-value"></span>
-                    <span id="decrease-temp-control">⬇️</span>
-                    <button id="celsius-button">°C</button>
-                    <button id="fahrenheit-button">°F</button>
+        <div id="weather">
+            <section class="temp-section">
+                <h2>Temperature</h2>
+                <div class="temp-content">
+                    <div id="temp-controls">
+                        <span id="increase-temp-control">⬆️</span>
+                        <span id="temp-value"></span>
+                        <span id="decrease-temp-control">⬇️</span>
+                        <button id="celsius-button">°C</button>
+                        <button id="fahrenheit-button">°F</button>
+                    </div>
+                    <button id="current-temp-button">Get Realtime Temperature</button>
                 </div>
-                <button id="current-temp-button">Get Realtime Temperature</button>
-            </div>
-        </section>
-        <section id="weather-garden">
-            <h2>Weather Garden</h2>
-            <div id="sky-content"></div>
-            <div id="landscape-content"></div>
-        </section>
+            </section>
+            <section id="weather-garden">
+                <h2>Weather Garden</h2>
+                <div id="sky-content"></div>
+                <div id="landscape-content"></div>
+            </section>
+        </div>
         <section id="sky">
             <label for="sky-label"><h2>Sky</h2></label>
             <select name="sky-select" id="sky-select">
@@ -44,9 +46,12 @@
         </section>
         <section id="city-name">
             <h2>City Name</h2>
-            <label for="textbox-city"></label>
-            <input type="text" id="textbox-city">
-            <div id="textbox-content"></div>
+            <div class="form-group">
+                <span>City Name:</span>
+                <label for="textbox-city"></label>
+                <input type="text" id="textbox-city" class="form-field" placeholder="Seattle">
+                <div id="textbox-content"></div>
+            </div>
         </section>
     </div>
     <footer>&copy; 2022 Taingleap Chheang (she/her) & Elaine Smith (she/her) | Ada Developer's Academy - Cohort 17</footer>
