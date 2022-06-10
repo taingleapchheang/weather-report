@@ -1,16 +1,30 @@
+/* * {border: 1px solid red;} */
+
 /* || Page Layout */
 
 body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    margin: 0;
-    padding: 0;
+    justify-content: center;
+    align-items: center;
     position: relative;
     min-height: 100vh;
     background-image: url(https://source.unsplash.com/9AqIdzEc9pY);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
+#glass {
+    width: 100vh;
+    height: 80vh;
+    position: absolute;
+    overflow: scroll;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135,  0.37 );
+    backdrop-filter: blur( 15px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
 
 /* || Typography */
 
@@ -29,6 +43,20 @@ h2 {
     color: gray;
 
 }
+
+#temp-value {
+    font-size: xx-large;
+}
+
+/* || Buttons */
+
+/* #temp-controls {
+    
+} */
+
+/* #current-temp-button {
+
+} */
 
 /* || Footer */
 
