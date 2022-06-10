@@ -45,8 +45,8 @@ const cityContent = () => {
 const updateCityName = () => {
   cityName.textContent = state.city;
   textboxCity.addEventListener('keyup', () => {
+    cityName.textContent = textboxCity.value;
     state.city = textboxCity.value;
-    cityName.textContent = state.city;
   });
 };
 
@@ -73,7 +73,11 @@ const reset = () => {
   resetButton.textContent = 'Reset';
   resetContainer.appendChild(resetButton);
   resetButton.addEventListener('click', () => {
+    state.city = 'Seattle';
     textboxCity.value = state.city;
+    cityName.textContent = 'Seattle';
+    tempValue.textContent = findLatitudeAndLongitude();
+    handleTempandLandscapesChange();
   });
 };
 
