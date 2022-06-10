@@ -63,6 +63,7 @@ const displaySky = () => {
   skyValue.addEventListener('change', () => {
     document.getElementById('sky-select');
     handleSkyChange();
+    changeSkyBackground();
   });
 };
 
@@ -147,6 +148,23 @@ const handleSkyChange = () => {
     skyscape.textContent = `🌧️💧🌧️🌧️💧🌧️💧🌧️💧🌧️💧🌧️`;
   } else if (document.getElementById('sky-select').value === 'snowy') {
     skyscape.textContent = `❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️`;
+  }
+};
+
+const changeSkyBackground = () => {
+  const skySelectValue = document.getElementById('sky-select').value;
+  if (skySelectValue === 'sunny') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/9AqIdzEc9pY')";
+  } else if (skySelectValue === 'cloudy') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/WLGHjbC0Cq4')";
+  } else if (skySelectValue === 'rainy') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/qnNV1XorvWE')";
+  } else if (skySelectValue === 'snowy') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/IWMedmrYV_4')";
   }
 };
 
