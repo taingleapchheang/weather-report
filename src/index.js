@@ -1,159 +1,147 @@
 ///Wave 2\\\
-const temp = document.createElement('p');
-const landscape = document.createElement('p');
-const cityText = document.createElement('h2');
+const tempValue = document.getElementById('temp-value');
+const landscape = document.getElementById('landscape-content');
+const cityName = document.getElementById('city-name-top');
 const textboxCity = document.getElementById('textbox-city');
 
-// const location = {
-//   city: 'Seattle',
-//   lat: 47.6485,
-//   lon: -122.379,
-//   temp: 54,
-// };
-
-const increaseTemp = () => {
-  const increaseButton = document.createElement('button');
-  const tempContainer = document.getElementById('temp-content');
-  increaseButton.textContent = '⬆️';
-  tempContainer.appendChild(increaseButton);
-  increaseButton.addEventListener('click', (e) => {
-    temp.textContent = parseInt(temp.textContent) + 1;
-    handleTempandLanscapesChange();
-  });
+const defaultLocation = {
+  city: 'Seattle',
+  lat: 47.6485,
+  lon: -122.379,
+  temp: 90,
 };
 
-const currentTemp = () => {
-  const tempContainer = document.getElementById('temp-content');
-  temp.textContent = '50';
-  handleTempandLanscapesChange();
-  tempContainer.appendChild(temp);
+const increaseTemp = () => {
+  const increaseButton = document.getElementById('increase-temp-control');
+  increaseButton.addEventListener('click', (e) => {
+    tempValue.textContent = parseInt(tempValue.textContent) + 1;
+    handleTempandLanscapesChange();
+  });
 };
 
 const decreaseTemp = () => {
-  const decreaseButton = document.createElement('button');
-  const tempContainer = document.getElementById('temp-content');
-  decreaseButton.textContent = '⬇️';
-  tempContainer.appendChild(decreaseButton);
+  const decreaseButton = document.getElementById('decrease-temp-control');
   decreaseButton.addEventListener('click', (e) => {
-    temp.innerText = parseInt(temp.innerText) - 1;
+    tempValue.textContent = parseInt(tempValue.textContent) - 1;
     handleTempandLanscapesChange();
   });
 };
 
-const Gardenlandscape = () => {
-  const landscapeContainer = document.getElementById('garden-content');
+const currentTempValue = () => {
+  tempValue.textContent = defaultLocation.temp;
   handleTempandLanscapesChange();
-  landscapeContainer.appendChild(landscape);
 };
 
-//Helper Functions\\
-const handleTempandLanscapesChange = () => {
-  if (parseInt(temp.textContent) >= 80) {
-    temp.style.color = 'red';
-    landscape.textContent = `"🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂"`;
-  } else if (
-    parseInt(temp.textContent) >= 70 &&
-    parseInt(temp.textContent) < 80
-  ) {
-    temp.style.color = 'orange';
-    landscape.textContent = `"🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷"`;
-  } else if (
-    parseInt(temp.textContent) >= 60 &&
-    parseInt(temp.textContent) < 70
-  ) {
-    temp.style.color = 'yellow';
-    landscape.textContent = '`"🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃"`';
-  } else if (
-    parseInt(temp.textContent) >= 50 &&
-    parseInt(temp.textContent) < 60
-  ) {
-    temp.style.color = 'green';
-    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
-  } else if (parseInt(temp.textContent) < 50) {
-    temp.style.color = 'teal';
-    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
-  }
+const cityContent = () => {
+  cityName.textContent = defaultLocation.city;
 };
 
 ///Wave 3\\\
-const cityContent = () => {
-  const cityContainer = document.getElementById('city-content');
-  cityText.textContent = 'For the lovely city of: ';
-  cityContainer.appendChild(cityText);
-};
 
 const updateCityName = () => {
+  cityName.textContent = defaultLocation.city;
   textboxCity.addEventListener('keyup', () => {
-    cityText.textContent = 'For the lovely city of: ' + textboxCity.value;
+    defaultLocation.city = textboxCity.value;
+    cityName.textContent = defaultLocation.city;
   });
 };
+
 ///Wave 4\\\
-
 const getRealTimeTemp = () => {
-  const realTimeTemp = document.createElement('button');
-  const tempContainer = document.getElementById('temp-content');
-  realTimeTemp.textContent = 'Get Realtime Temperature';
-  tempContainer.appendChild(realTimeTemp);
-  realTimeTemp.addEventListener('click', (e) => {
-    //const axios = require('axios');
-    const findLatitudeAndLongitude = () => {
-      let latitude, longitude;
-      axios
-        .get('http://127.0.0.1:5000/location', {
-          params: {
-            q: textboxCity.value,
-          },
-        })
-        .then((response) => {
-          latitude = response.data[0].lat;
-          longitude = response.data[0].lon;
-          console.log(`${latitude}, ${longitude} have been found`);
-          getRealTimeWeather(latitude, longitude);
-        })
-        .catch((error) => {
-          console.log(`Not Found ${error.response}`);
-        });
-    };
-
-    const getRealTimeWeather = (latitude, longitude) => {
-      axios
-        .get('http://127.0.0.1:5000/weather', {
-          params: {
-            lat: latitude,
-            key: longitude,
-          },
-        })
-        .then((response) => {
-          actualTemp = response.data;
-          console.log(`${actualTemp} have been found`);
-        })
-        .catch((error) => {
-          console.log(`Not Found ${error.response.data}`);
-        });
-    };
-  });
+  const realTimeTempButton = document.getElementById('current-temp-button');
+  realTimeTempButton.addEventListener('click', findLatitudeAndLongitude);
 };
 
 ///Wave 6\\\
-
 const reset = () => {
   const resetButton = document.createElement('button');
   const resetContainer = document.getElementById('textbox-content');
   resetButton.textContent = 'Reset';
   resetContainer.appendChild(resetButton);
   resetButton.addEventListener('click', () => {
-    textboxCity.value = 'Seattle';
-    cityText.textContent = 'For the lovely city of: ' + textboxCity.value;
+    textboxCity.value = defaultLocation.city;
   });
+};
+
+//Helper Functions\\
+
+const convertKToF = (temp) => {
+  return (temp - 273.15) * (9 / 5) + 32;
+};
+
+const handleTempandLanscapesChange = () => {
+  if (parseInt(tempValue.textContent) >= 80) {
+    tempValue.style.color = 'red';
+    landscape.textContent = `"🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂"`;
+  } else if (
+    parseInt(tempValue.textContent) >= 70 &&
+    parseInt(tempValue.textContent) < 80
+  ) {
+    tempValue.style.color = 'orange';
+    landscape.textContent = `"🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷"`;
+  } else if (
+    parseInt(tempValue.textContent) >= 60 &&
+    parseInt(tempValue.textContent) < 70
+  ) {
+    tempValue.style.color = 'yellow';
+    landscape.textContent = '`"🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃"`';
+  } else if (
+    parseInt(tempValue.textContent) >= 50 &&
+    parseInt(tempValue.textContent) < 60
+  ) {
+    tempValue.style.color = 'green';
+    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+  } else if (parseInt(tempValue.textContent) < 50) {
+    temp.style.color = 'teal';
+    landscape.textContent = `"🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲"`;
+  }
+};
+
+const findLatitudeAndLongitude = () => {
+  axios
+    .get('http://127.0.0.1:5000/location', {
+      params: {
+        q: defaultLocation.city,
+      },
+    })
+    .then((response) => {
+      defaultLocation.lat = response.data[0].lat;
+      defaultLocation.lon = response.data[0].lon;
+      console.log(
+        `${defaultLocation.lat}, ${defaultLocation.lon} have been found`
+      );
+      getRealTimeWeather();
+    })
+    .catch((error) => {
+      console.log(`Not Found ${error.response}`);
+    });
+};
+
+const getRealTimeWeather = () => {
+  axios
+    .get('http://127.0.0.1:5000/weather', {
+      params: {
+        lat: defaultLocation.lat,
+        lon: defaultLocation.lon,
+      },
+    })
+    .then((response) => {
+      const weather = response.data;
+      defaultLocation.temp = Math.round(convertKToF(weather.current.temp));
+      tempValue.textContent = defaultLocation.temp;
+      handleTempandLanscapesChange();
+      console.log(`${defaultLocation.temp} have been found`);
+    })
+    .catch((error) => {
+      console.log(`Not Found ${error.response.data}`);
+    });
 };
 
 document.addEventListener(
   'DOMContentLoaded',
   increaseTemp(),
-  currentTemp(),
+  currentTempValue(),
   decreaseTemp(),
-  Gardenlandscape(),
-  cityContent(),
   updateCityName(),
   getRealTimeTemp(),
   reset()

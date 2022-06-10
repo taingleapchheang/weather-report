@@ -10,15 +10,25 @@
 <body>
     <header>
         <h1>Weather Report</h1>
-        <h2 id="city-content"></h2>
+        <h2>For the lovely city of 
+            <span id="city-name-top"></span>
+        </h2>
     </header>
-    <section id="temperature">
-        <h1>Temperature</h1>
-        <div id="temp-content"></div>
+    <section class="temp-section">
+        <h2>Temperature</h2>
+        <div class="temp-content">
+            <div class="temp-controls">
+                <span id="increase-temp-control">⬆️</span>
+                <span id="temp-value"></span>
+                <span id="decrease-temp-control">⬇️</span>
+            </div>
+            <button id="current-temp-button">Get Realtime Temperature</button>
+        </div>
     </section>
     <section id="weather-garden">
         <h1>Weather Garden</h1>
-        <div id="garden-content"></div>
+        <div id="landscape-content"></div>
+        <div id="sky-content"></div>
     </section>
     <section id="city-name">
         <h1>City Name</h1>
