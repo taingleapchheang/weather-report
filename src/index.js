@@ -10,13 +10,18 @@ const state = {
   city: 'Seattle',
   lat: 47.6485,
   lon: -122.379,
-  temp: 50,
+  temp: tempValue,
   degree: 'F',
 };
 
 const tempConversion = {
   F: [80, 70, 60, 50],
   C: [27, 21, 15, 10],
+};
+
+window.onload = () => {
+  tempValue.textContent = findLatitudeAndLongitude();
+  handleTempandLandscapesChange();
 };
 
 const upAndDownButtons = () => {
@@ -30,11 +35,6 @@ const upAndDownButtons = () => {
     tempValue.textContent = parseInt(tempValue.textContent) - 1;
     handleTempandLandscapesChange();
   });
-};
-
-const currentTempValue = () => {
-  tempValue.textContent = state.temp;
-  handleTempandLandscapesChange();
 };
 
 const cityContent = () => {
@@ -139,14 +139,23 @@ const handleTempandLandscapesChange = () => {
 };
 
 const handleSkyChange = () => {
-  if (document.getElementById('sky-select').value === 'sunny') {
+  const skySelectValue = document.getElementById('sky-select').value;
+  if (skySelectValue === 'sunny') {
     skyscape.textContent = `☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️`;
-  } else if (document.getElementById('sky-select').value === 'cloudy') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/9AqIdzEc9pY')";
+  } else if (skySelectValue === 'cloudy') {
     skyscape.textContent = `☁️☁️⛅☁️⛅☁️☁️⛅☁️⛅☁️⛅☁️`;
-  } else if (document.getElementById('sky-select').value === 'rainy') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/WLGHjbC0Cq4')";
+  } else if (skySelectValue === 'rainy') {
     skyscape.textContent = `🌧️💧🌧️🌧️💧🌧️💧🌧️💧🌧️💧🌧️💧`;
-  } else if (document.getElementById('sky-select').value === 'snowy') {
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/qnNV1XorvWE')";
+  } else if (skySelectValue === 'snowy') {
     skyscape.textContent = `❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️`;
+    document.body.style.backgroundImage =
+      "url('https://source.unsplash.com/IWMedmrYV_4')";
   }
 };
 
@@ -189,14 +198,20 @@ const getRealTimeWeather = () => {
     });
 };
 
-document.addEventListener(
-  'DOMContentLoaded',
-  upAndDownButtons(),
-  currentTempValue(),
-  updateCityName(),
-  getRealTimeTemp(),
-  displaySky(),
-  reset(),
-  celsius(),
-  fahrenheit()
-);
+if (document.readyState !== 'loading') {
+  upAndDownButtons();
+  updateCityName();
+  getRealTimeTemp();
+  displaySky();
+  reset();
+  celsius();
+  fahrenheit();
+} else {
+  document.addEventListener('DOMContentLoaded', upAndDownButtons);
+  document.addEventListener('DOMContentLoaded', updateCityName);
+  document.addEventListener('DOMContentLoaded', getRealTimeTemp);
+  document.addEventListener('DOMContentLoaded', displaySky);
+  document.addEventListener('DOMContentLoaded', reset);
+  document.addEventListener('DOMContentLoaded', celsius);
+  document.addEventListener('DOMContentLoaded', fahrenheit);
+}
