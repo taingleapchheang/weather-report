@@ -1,0 +1,42 @@
+/* || Page Layout */
+
+body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+    background-image: url(https://source.unsplash.com/9AqIdzEc9pY);
+}
+
+
+/* || Typography */
+
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    color: darkgray;
+}
+
+h1 {
+    font-weight: lighter;
+    color: darkgray;
+}
+
+h2 {
+    font-weight: lighter;
+    color: gray;
+
+}
+
+/* || Footer */
+
+footer {
+    font-size: smaller;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
