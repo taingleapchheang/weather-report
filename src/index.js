@@ -6,7 +6,7 @@ const textboxCity = document.getElementById('textbox-city');
 const skyscape = document.getElementById('sky-content');
 const API = 'http://127.0.0.1:5000';
 
-const defaultLocation = {
+const state = {
   city: 'Seattle',
   lat: 47.6485,
   lon: -122.379,
@@ -33,20 +33,20 @@ const upAndDownButtons = () => {
 };
 
 const currentTempValue = () => {
-  tempValue.textContent = defaultLocation.temp;
+  tempValue.textContent = state.temp;
   handleTempandLandscapesChange();
 };
 
 const cityContent = () => {
-  cityName.textContent = defaultLocation.city;
+  cityName.textContent = state.city;
 };
 
 ///Wave 3\\\
 const updateCityName = () => {
-  cityName.textContent = defaultLocation.city;
+  cityName.textContent = state.city;
   textboxCity.addEventListener('keyup', () => {
-    defaultLocation.city = textboxCity.value;
-    cityName.textContent = defaultLocation.city;
+    state.city = textboxCity.value;
+    cityName.textContent = state.city;
   });
 };
 
@@ -73,7 +73,7 @@ const reset = () => {
   resetButton.textContent = 'Reset';
   resetContainer.appendChild(resetButton);
   resetButton.addEventListener('click', () => {
-    textboxCity.value = defaultLocation.city;
+    textboxCity.value = state.city;
   });
 };
 
@@ -94,43 +94,45 @@ const convertKToF = (temp) => {
 };
 
 const convertCToF = () => {
-  if (defaultLocation.degree === 'C') {
+  if (state.degree === 'C') {
     tempValue.textContent = Math.round(tempValue.textContent * (9 / 5) + 32);
-    defaultLocation.degree = 'F';
+    state.degree = 'F';
   }
 };
 
 const convertFToC = () => {
-  if (defaultLocation.degree === 'F') {
+  if (state.degree === 'F') {
     tempValue.textContent = Math.round((tempValue.textContent - 32) * (5 / 9));
-    defaultLocation.degree = 'C';
+    state.degree = 'C';
   }
 };
 
 const handleTempandLandscapesChange = () => {
-  const currentDegree = tempConversion[defaultLocation.degree];
-  if (parseInt(tempValue.textContent) >= currentDegree[0]) {
+  const currentDegree = tempConversion[state.degree];
+  const currentTemp = parseInt(tempValue.textContent);
+
+  if (currentTemp >= currentDegree[0]) {
     tempValue.style.color = 'red';
     landscape.textContent = `🌵__🐍_🦂_🌵🌵__🐍_🏜_🦂`;
   } else if (
-    parseInt(tempValue.textContent) >= currentDegree[1] &&
-    parseInt(tempValue.textContent) < currentDegree[0]
+    currentTemp >= currentDegree[1] &&
+    currentTemp < currentDegree[0]
   ) {
     tempValue.style.color = 'orange';
     landscape.textContent = `🌸🌿🌼__🌷🌻🌿_☘️🌱_🌻🌷`;
   } else if (
-    parseInt(tempValue.textContent) >= currentDegree[2] &&
-    parseInt(tempValue.textContent) < currentDegree[1]
+    currentTemp >= currentDegree[2] &&
+    currentTemp < currentDegree[1]
   ) {
-    tempValue.style.color = 'yellow';
+    tempValue.style.color = 'purple';
     landscape.textContent = `🌾🌾_🍃_🪨__🛤_🌾🌾🌾_🍃`;
   } else if (
-    parseInt(tempValue.textContent) >= currentDegree[3] &&
-    parseInt(tempValue.textContent) < currentDegree[2]
+    currentTemp >= currentDegree[3] &&
+    currentTemp < currentDegree[2]
   ) {
     tempValue.style.color = 'green';
     landscape.textContent = `🌲🌲⛄️🌲⛄️🍂🌲🍁🌲🌲⛄️🍂🌲`;
-  } else if (parseInt(tempValue.textContent) < currentDegree[3]) {
+  } else if (currentTemp < currentDegree[3]) {
     tempValue.style.color = 'blue';
     landscape.textContent = `❄️️🌲⛄️🌲⛄️❄️️🌲❄️️🌲🌲⛄️❄️️🌲`;
   }
@@ -138,13 +140,13 @@ const handleTempandLandscapesChange = () => {
 
 const handleSkyChange = () => {
   if (document.getElementById('sky-select').value === 'sunny') {
-    skyscape.textContent = `☀️ ☀️ ☀️ ☀️☀️  ☀️ ☀️ ☀️☀️`;
-  } else if (document.getElementById('sky-select').value === 'rainy') {
-    skyscape.textContent = `🌧️💧🌧️  🌧️💧🌧️ 💧🌧️ 💧🌧️`;
+    skyscape.textContent = `☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️`;
   } else if (document.getElementById('sky-select').value === 'cloudy') {
-    skyscape.textContent = `☁️☁️ ⛅ ☁️ ⛅ ☁️☁️☁️ ⛅`;
+    skyscape.textContent = `☁️☁️⛅☁️⛅☁️☁️⛅☁️⛅☁️⛅☁️`;
+  } else if (document.getElementById('sky-select').value === 'rainy') {
+    skyscape.textContent = `🌧️💧🌧️🌧️💧🌧️💧🌧️💧🌧️💧🌧️💧`;
   } else if (document.getElementById('sky-select').value === 'snowy') {
-    skyscape.textContent = `❄️️🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️ 🌧️❄️️ ❄️️`;
+    skyscape.textContent = `❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️🌧️❄️️❄️️`;
   }
 };
 
@@ -152,15 +154,13 @@ const findLatitudeAndLongitude = () => {
   axios
     .get(`${API}/location`, {
       params: {
-        q: defaultLocation.city,
+        q: state.city,
       },
     })
     .then((response) => {
-      defaultLocation.lat = response.data[0].lat;
-      defaultLocation.lon = response.data[0].lon;
-      console.log(
-        `${defaultLocation.lat}, ${defaultLocation.lon} have been found`
-      );
+      state.lat = response.data[0].lat;
+      state.lon = response.data[0].lon;
+      console.log(`${state.lat}, ${state.lon} have been found`);
       getRealTimeWeather();
     })
     .catch((error) => {
@@ -172,17 +172,17 @@ const getRealTimeWeather = () => {
   axios
     .get(`${API}/weather`, {
       params: {
-        lat: defaultLocation.lat,
-        lon: defaultLocation.lon,
+        lat: state.lat,
+        lon: state.lon,
       },
     })
     .then((response) => {
       const weather = response.data;
-      defaultLocation.temp = Math.round(convertKToF(weather.current.temp));
-      tempValue.textContent = defaultLocation.temp;
-      defaultLocation.degree = 'F';
+      state.temp = Math.round(convertKToF(weather.current.temp));
+      tempValue.textContent = state.temp;
+      state.degree = 'F';
       handleTempandLandscapesChange();
-      console.log(`${defaultLocation.temp} have been found`);
+      console.log(`${state.temp} have been found`);
     })
     .catch((error) => {
       console.log(`Not Found ${error.response.data}`);
