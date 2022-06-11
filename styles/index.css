@@ -40,6 +40,18 @@ body {
     align-items: center;
 }
 
+#temp-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#inc-dec-temp-button {
+    display: flex;
+    flex-direction: column;
+}
+
 #sky-content {
     margin-top: 25px;
     margin-bottom: 25px;
@@ -66,6 +78,9 @@ h2, h3 {
 
 #temp-value {
     font-size: xx-large;
+    font-weight: bolder;
+    height: auto;
+    max-height: 100%;
 }
 
 /* || City Name Input Text Box */
