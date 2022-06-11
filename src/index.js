@@ -4,7 +4,7 @@ const landscape = document.getElementById('landscape-content');
 const cityName = document.getElementById('city-name-top');
 const textboxCity = document.getElementById('textbox-city');
 const skyscape = document.getElementById('sky-content');
-const API = 'http://127.0.0.1:5000';
+const API = 'https://our-weather-report-proxy.herokuapp.com/';
 
 const state = {
   city: 'Seattle',
@@ -45,8 +45,8 @@ const cityContent = () => {
 const updateCityName = () => {
   cityName.textContent = state.city;
   textboxCity.addEventListener('keyup', () => {
+    cityName.textContent = textboxCity.value;
     state.city = textboxCity.value;
-    cityName.textContent = state.city;
   });
 };
 
@@ -63,6 +63,7 @@ const displaySky = () => {
   skyValue.addEventListener('change', () => {
     document.getElementById('sky-select');
     handleSkyChange();
+    changeSkyBackground();
   });
 };
 
@@ -73,7 +74,11 @@ const reset = () => {
   resetButton.textContent = 'Reset';
   resetContainer.appendChild(resetButton);
   resetButton.addEventListener('click', () => {
+    state.city = 'Seattle';
     textboxCity.value = state.city;
+    cityName.textContent = 'Seattle';
+    tempValue.textContent = findLatitudeAndLongitude();
+    handleTempandLandscapesChange();
   });
 };
 
