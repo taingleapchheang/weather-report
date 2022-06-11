@@ -27,11 +27,11 @@ window.onload = () => {
 const upAndDownButtons = () => {
   const increaseButton = document.getElementById('increase-temp-control');
   const decreaseButton = document.getElementById('decrease-temp-control');
-  increaseButton.addEventListener('click', (e) => {
+  increaseButton.addEventListener('click', () => {
     tempValue.textContent = parseInt(tempValue.textContent) + 1;
     handleTempandLandscapesChange();
   });
-  decreaseButton.addEventListener('click', (e) => {
+  decreaseButton.addEventListener('click', () => {
     tempValue.textContent = parseInt(tempValue.textContent) - 1;
     handleTempandLandscapesChange();
   });
@@ -145,6 +145,7 @@ const handleTempandLandscapesChange = () => {
 
 const handleSkyChange = () => {
   const skySelectValue = document.getElementById('sky-select').value;
+
   if (skySelectValue === 'sunny') {
     skyscape.textContent = `☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️☀️`;
     document.body.style.backgroundImage =
