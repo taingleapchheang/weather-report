@@ -1,166 +1,190 @@
-/* Solution adapted from Simon de Sal */
+/* * {border: 1px solid red;} */
 
-h2 {
-    margin: 0 auto 2rem auto;
-}
-  
+/* || Page Layout */
+
 body {
-display: grid;
-grid-template-columns: 1fr 2fr;
-grid-template-rows: auto auto auto auto;
-grid-gap: 1rem;
-
-font-family: "Rubik", sans-serif;
-font-size: 18px;
-background-color: #1b69f9;
-margin: 2rem;
-}
-
-.header__header {
-color: white;
-grid-column: span 3;
-display: flex;
-align-items: center;
-margin: 2rem auto 3rem 0;
-}
-
-.header__header > h1 {
-margin-right: 2rem;
-font-size: 3em;
-}
-
-.header__city-name {
-font-style: oblique;
-font-size: 2rem;
-}
-
-.header__city-name::before,
-.header__city-name::after {
-content: "✨";
-}
-
-.temperature__section,
-.sky__section,
-.city-name__section {
-border-radius: 8px;
-padding: 2rem;
-background-color: white;
-}
-
-.temperature__section {
-grid-row: 2;
-}
-
-.temperature__section button {
-    background-color: #1b69f9;
-    border: none;
-    color: white;
-    padding: 15px 32px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 100vh;
+    background-image: url(https://source.unsplash.com/4P21IxWN7BA);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+#glass {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vh;
+    height: 85vh;
+    position: absolute;
+    overflow: scroll;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135,  0.37 );
+    backdrop-filter: blur( 15px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+#weather {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#temp-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#inc-dec-temp-button {
+    display: flex;
+    flex-direction: column;
+}
+
+#sky-content {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+#landscape-content {
+    margin-top: 25px;
+}
+
+/* || Typography */
+
+body {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    color: #39739d;
+}
+
+h1 {
+    font-weight: bolder;
+}
+
+h2, h3 {
+    font-weight: lighter;
+}
+
+#temp-value {
+    font-size: xx-large;
+    font-weight: bolder;
+    height: auto;
+    max-height: 100%;
+}
+
+/* || City Name Input Text Box */
+
+/* Code Source: https://codepen.io/aaroniker/pen/dybMVMB */
+.form-group {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-field {
+    display: block;
+    width: 50%;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    color: #99a3ba;
+    border: 1px solid #cdd9ed;
+    background: #ffffff;
+    transition: border 0.3s ease;
+}
+
+.form-field::placeholder {
+    color: #cbd1dc;
+}
+
+.form-field:focus {
+    outline: none;
+    border-color: #275efe;
+}
+
+/* || Sky Select Box */
+
+/* Code Source: https://codepen.io/fabriceleven/pen/qOmNPG */
+.selectdiv:after {
+    font-size: 14px;
+    color: #99a3ba;
+    border-bottom: 1px solid #999;
+}
+
+.selectdiv select {
+    width: 100%;
+    max-width: 50%;
+    height: 25px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: #99a3ba;
+    background-color: #ffffff;
+    border-radius: 6px;
+    border: 1px solid #cdd9ed;
+}
+
+/* || Buttons */
+
+/* Code Source: https://getcssscan.com/css-buttons-examples */
+button {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
     display: inline-block;
-    font-size: 16px;
-    border-radius: 10px
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 2px;
+    outline: none;
+    padding: 8px .8em;
+    position: relative;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+    }
+
+button:hover,
+button:focus {
+    background-color: #b3d3ea;
+    color: #2c5777;
 }
 
-.sky__section {
-grid-row: 3;
+button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
 }
 
-.city-name__section {
-grid-row: 4;
+button:active {
+    background-color: #a0c7e4;
+    box-shadow: none;
+    color: #2c5777;
 }
 
-.garden__section {
-grid-row: 2 / span 3;
-grid-column: 2;
-text-align: center;
-align-self: center;
-}
+/* || Footer */
 
-.temperature__content {
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-/* justify-content: center; */
-}
-
-#tempValue {
-font-size: 3rem;
-margin-left: 1.5rem;
-/* padding-right: 1rem; */
-/* margin-right: 1.5rem; */
-}
-
-.temperature__controls {
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-
-.garden__section > h2 {
-color: white;
-}
-
-.garden__content {
-min-height: 200px;
-max-width: fit-content;
-margin: auto;
-padding: 2rem;
-
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-
-border-radius: 8px;
-font-size: 2em;
-}
-
-.city-name__reset-btn {
-border: 0;
-background-color: #1655cc;
-color: white;
-border-radius: 8px;
-padding: 1rem;
-font-family: "Rubik", sans-serif;
-}
-
-.red {
-color: red;
-}
-
-.orange {
-color: orange;
-}
-
-.yellow {
-color: gold;
-}
-
-.yellow-green {
-color: yellowgreen;
-}
-
-.green {
-color: green;
-}
-
-.teal {
-color: teal;
-}
-
-.cloudy {
-background-color: lightgrey;
-}
-
-.sunny {
-background-color: rgb(221, 255, 255);
-}
-
-.rainy {
-background-color: lightblue;
-}
-
-.snowy {
-background-color: lightsteelblue;
+footer {
+    font-size: smaller;
+    position: absolute;
+    color: white;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
 }
