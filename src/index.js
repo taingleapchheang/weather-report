@@ -63,7 +63,6 @@ const displaySky = () => {
   skyValue.addEventListener('change', () => {
     document.getElementById('sky-select');
     handleSkyChange();
-    changeSkyBackground();
   });
 };
 
@@ -179,7 +178,7 @@ const findLatitudeAndLongitude = () => {
       getRealTimeWeather();
     })
     .catch((error) => {
-      console.log(`Not Found ${error.response}`);
+      console.log(`Not Found ${error.response.data}`);
     });
 };
 
@@ -197,7 +196,7 @@ const getRealTimeWeather = () => {
       tempValue.textContent = state.temp;
       state.degree = 'F';
       handleTempandLandscapesChange();
-      console.log(`${state.temp} have been found`);
+      console.log(`${state.temp} has been found`);
     })
     .catch((error) => {
       console.log(`Not Found ${error.response.data}`);
